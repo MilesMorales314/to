@@ -1,0 +1,72 @@
+body{
+    width: 100%;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+
+    display: grid;
+    place-items: center;
+    grid-template-rows: max-content;
+}
+
+.container {
+    display: grid;
+    place-items: center;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    
+    width: max(80%, 18rem);
+}
+
+.adder {
+    display: grid;
+    grid-template-rows: 5fr 1fr;
+    place-items: center;
+    height: 20rem;
+    padding: 1rem 1rem 0rem;
+}
+
+.addedDiv {
+    height: 19rem;
+    padding: 1rem;
+}
+
+.element  {
+    width: 13rem; 
+    background-color: rgb(255, 255, 148);
+    border-radius: 5%;
+    box-shadow: 5px 5px 10px rgba(231, 205, 55, 0.7);
+}
+
+textarea {
+    height: 100%;
+    background-color: rgb(255, 255, 148);
+    width: 100%;
+    
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    box-shadow: 10px;
+}
+
+.round {
+    height: 2.25rem;
+    width: 2.25rem;
+    line-height: 2.25rem;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.button {
+    cursor: pointer;
+
+    background-color: rgb(231, 205, 55);
+    color: #fff;
+    font-size: 1.5rem;
+
+    border: none;
+}
+
+.delete {
+    margin: 2rem;
+}
