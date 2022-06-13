@@ -9,7 +9,12 @@ body{
     grid-template-rows: max-content;
 }
 
+.logo {
+    margin: 3rem 0 1.5rem;
+}
+
 .container {
+    margin: 1.5rem 0;
     display: grid;
     place-items: center;
     gap: 1rem;
@@ -18,20 +23,13 @@ body{
     width: max(80%, 18rem);
 }
 
-.adder {
+.element  {
     display: grid;
     grid-template-rows: 5fr 1fr;
     place-items: center;
     height: 20rem;
     padding: 1rem 1rem 0rem;
-}
 
-.addedDiv {
-    height: 19rem;
-    padding: 1rem;
-}
-
-.element  {
     width: 13rem; 
     background-color: rgb(255, 255, 148);
     border-radius: 5%;
@@ -47,12 +45,13 @@ textarea {
     outline: none;
     box-sizing: border-box;
     box-shadow: 10px;
+    resize: none;
 }
 
 .round {
-    height: 2.25rem;
-    width: 2.25rem;
-    line-height: 2.25rem;
+    height: 1.5em;
+    width: 1.5em;
+    line-height: 1.5rem;
     text-align: center;
     border-radius: 50%;
 }
@@ -60,13 +59,17 @@ textarea {
 .button {
     cursor: pointer;
 
-    background-color: rgb(231, 205, 55);
+    background-color: #fadd3a;
     color: #fff;
     font-size: 1.5rem;
 
     border: none;
 }
 
-.delete {
-    margin: 2rem;
+.buttons {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
 }
