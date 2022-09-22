@@ -1,93 +1,91 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const add = document.getElementById('add')
-    const inputText = document.getElementById('input')
-    const container = document.querySelector(".container")
-    const dataStorage = localStorage.getItem('data') ? JSON.parse(localStorage.getItem('data')) : {}
-    let editBtnClicked = true
-    
-    //functions
+const add = document.getElementById('add')
+const inputText = document.getElementById('input')
+const container = document.querySelector(".container")
+const dataStorage = localStorage.getItem('data') ? JSON.parse(localStorage.getItem('data')) : {}
+let editBtnClicked = true
 
-    const makeElement = (data='', firstEntry=true, ogKey='') => {
-        const newEle = document.createElement('div')
-        const newTextarea = document.createElement('textarea')
-        const newButtons = document.createElement('div')
-        const newDelBtn = document.createElement('img')
-        const newEditBtn = document.createElement('img')
+//functions
 
-        newTextarea.value = data
-        inputText.value = null
-        newTextarea.className = 'added adjust'
-        newTextarea.disabled = true
+const makeElement = (data = '', firstEntry = true, ogKey = '') => {
+    const newEle = document.createElement('div')
+    const newTextarea = document.createElement('textarea')
+    const newButtons = document.createElement('div')
+    const newDelBtn = document.createElement('img')
+    const newEditBtn = document.createElement('img')
 
-        newButtons.className = "buttons"
+    newTextarea.value = data
+    inputText.value = null
+    newTextarea.className = 'added adjust'
+    newTextarea.disabled = true
 
-        newDelBtn.src = "./static/trash.png" 
-        newDelBtn.alt="deleteButton" 
-        newDelBtn.className ="round button"
+    newButtons.className = "buttons"
 
-        newEditBtn.src = './static/pencil.png'
-        newEditBtn.alt="editButton"
-        newEditBtn.className ="round button"
+    newDelBtn.src = "./static/trash.png"
+    newDelBtn.alt = "deleteButton"
+    newDelBtn.className = "round button"
 
-        newButtons.appendChild(newEditBtn)
-        newButtons.appendChild(newDelBtn)
+    newEditBtn.src = './static/pencil.png'
+    newEditBtn.alt = "editButton"
+    newEditBtn.className = "round button"
 
-        newEle.className = 'element'
+    newButtons.appendChild(newEditBtn)
+    newButtons.appendChild(newDelBtn)
 
-        let newKey = `element${Date.now()}`
-        newEle.id = firstEntry ? newKey : ogKey
-        
-        newEle.appendChild(newTextarea)
-        newEle.appendChild(newButtons)
-        container.appendChild(newEle)
+    newEle.className = 'element'
 
-        if(firstEntry) {
-            dataStorage[newEle.id] = data
-            localStorage.setItem('data', JSON.stringify(dataStorage))
-        }
+    let newKey = `element${Date.now()}`
+    newEle.id = firstEntry ? newKey : ogKey
 
-        newDelBtn.addEventListener('click', () => {
-            delete(dataStorage[newEle.id])
-            localStorage.setItem('data', JSON.stringify(dataStorage))
-            newEle.remove()
-        })
+    newEle.appendChild(newTextarea)
+    newEle.appendChild(newButtons)
+    container.appendChild(newEle)
 
-        
-        newEditBtn.addEventListener('click', () => {
-            if(editBtnClicked) {
-                newTextarea.disabled = false
-                newEditBtn.src = './static/thumbs-up.png'
-                editBtnClicked = false
-            }
-            else {
-                newTextarea.disabled = true
-                newEditBtn.src = './static/pencil.png'
-                dataStorage[newEle.id] = newTextarea.value
-                localStorage.setItem('data', JSON.stringify(dataStorage))
-                editBtnClicked = true
-            }
-        })
+    if (firstEntry) {
+        dataStorage[newEle.id] = data
+        localStorage.setItem('data', JSON.stringify(dataStorage))
     }
 
-    const updatePage = () => {
-        let values = Object.values(dataStorage)
-        let keys = Object.keys(dataStorage)
-        
-        for(let i in values) {
-            makeElement(data=values[i], firstEntry=false, ogKey=keys[i])
-        }
-    }
+    newDelBtn.addEventListener('click', () => {
+        delete (dataStorage[newEle.id])
+        localStorage.setItem('data', JSON.stringify(dataStorage))
+        newEle.remove()
+    })
 
-    //body code
 
-    updatePage()
-
-    add.addEventListener('click', () => {
-        if(inputText.value) {
-            makeElement(data=inputText.value)
+    newEditBtn.addEventListener('click', () => {
+        if (editBtnClicked) {
+            newTextarea.disabled = false
+            newEditBtn.src = './static/thumbs-up.png'
+            editBtnClicked = false
         }
         else {
-            alert("Enter text to add")
+            newTextarea.disabled = true
+            newEditBtn.src = './static/pencil.png'
+            dataStorage[newEle.id] = newTextarea.value
+            localStorage.setItem('data', JSON.stringify(dataStorage))
+            editBtnClicked = true
         }
     })
+}
+
+const updatePage = () => {
+    let values = Object.values(dataStorage)
+    let keys = Object.keys(dataStorage)
+
+    for (let i in values) {
+        makeElement(data = values[i], firstEntry = false, ogKey = keys[i])
+    }
+}
+
+//body code
+
+updatePage()
+
+add.addEventListener('click', () => {
+    if (inputText.value) {
+        makeElement(data = inputText.value)
+    }
+    else {
+        alert("Enter text to add")
+    }
 })
